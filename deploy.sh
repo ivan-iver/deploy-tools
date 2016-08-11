@@ -2,8 +2,9 @@
 
 # Copyright (c) 2016 Iván Jaimes, https://iver.mx. See LICENSE file.
 #
-# This is a skeleton of a bash deploy script. To use for yourself, just set the
-# scripts variables and then run it.
+# This is a skeleton of a bash deploy script and is part of a scripts collection.
+# If you wish to know more about it please visit https://github.com/ivan-iver/deploy-tools
+# To use for yourself, just set the scripts variables and then run it.
 
 export API_PACKAGE=pack.tar.gz
 export TARGET=server
