@@ -3,7 +3,7 @@
 # --
 # Author
 # --
-# Iván Jaimes <ijaimes@palo-it.mx>
+# Iván Jaimes <ivan@iver.mx>
 #
 # Goal script:  set color environment variables.
 
@@ -42,10 +42,12 @@ pcolor(){
       echo -e "${RED}[ERROR] ${NC} $2";
       ;;
     DEBUG)
-      echo -e "${PURPLE}[DEBUG] ${NC} $2";
+      if [[ "${ISDEBUG}" == "true" ]]; then
+        echo -e "${PURPLE}[DEBUG] ${NC} $2";
+      fi;
       ;;
     *)
-      echo -e "${RED}ERROR${NC} Usage ${YELLOW}pcolor(${NC}INFO|WARNING|ERROR, MESSAGE ${YELLOW})${NC}" 1>&2; 
+      echo -e "${RED}ERROR${NC} Usage ${YELLOW}pcolor(${NC}INFO|WARNING|ERROR, MESSAGE ${YELLOW})${NC}" 1>&2;
       ;;
   esac
 }

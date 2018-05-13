@@ -5,8 +5,8 @@ set -o nounset
 # Using color script environment
 . ${SCRIPTS_PATH}/env
 
-. ${SCRIPTS_PATH}/set-version.sh
-source ${SCRIPTS_PATH}/branch-detect.sh
+. ${SCRIPTS_PATH}/set_version.sh
+source ${SCRIPTS_PATH}/branch_detect.sh
 
 pcolor "INFO" "Evironment ${PURPLE}${branch}${NC} and branch ${PURPLE}${RAMA}${NC}";
 

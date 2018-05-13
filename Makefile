@@ -1,16 +1,13 @@
 SHELL := bash
-
 ACTUAL := $(shell pwd)
-PKGNAME := api.tar.gz
 
 # Exports as global variables used from build scripts
 export ACTUAL
-export PKGNAME
 export SCRIPTS_PATH=${ACTUAL}/scripts
 export TEST_PATH=${ACTUAL}/test
 
-DATE=`date +%Y-%m-%d`
-DIR_DATE=${DATE}*
+help:
+	@echo ""
 
 build:
 	@${SCRIPTS_PATH}/build.sh
