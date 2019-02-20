@@ -30,24 +30,29 @@ export CLTYPE="\033"
  export  WHITE="${CLTYPE}[0;37m"  # White
  export  BOLD="${CLTYPE}[2;30m"   # Black - Bold
 
-pcolor(){
-  case "$1" in
-    INFO)
-      echo -e "${GREEN}[INFO]  ${NC} $2";
-      ;;
-    WARNING)
-      echo -e "${YELLOW}[WARN]  ${NC} $2";
-      ;;
-    ERROR)
-      echo -e "${RED}[ERROR] ${NC} $2";
-      ;;
-    DEBUG)
-      if [[ "${ISDEBUG}" == "true" ]]; then
-        echo -e "${PURPLE}[DEBUG] ${NC} $2";
-      fi;
-      ;;
-    *)
-      echo -e "${RED}ERROR${NC} Usage ${YELLOW}pcolor(${NC}INFO|WARNING|ERROR, MESSAGE ${YELLOW})${NC}" 1>&2;
-      ;;
-  esac
+usage() {
+  echo "Usage: log.sh [-i|-w|-e|-d] message";
+  exit 1;
 }
+
+MESSAGE=""
+while getopts i:w:e:d: option
+do
+  case "${option}"
+    in
+    i) MESSAGE="${GREEN}[INFO]  ${NC} ${OPTARG}";;
+    w) MESSAGE="${YELLOW}[WARNING]  ${NC} ${OPTARG}";;
+    e) MESSAGE="${RED}[ERROR]  ${NC} ${OPTARG}";;
+    d) MESSAGE="${PURPLE}[DEBUG]  ${NC} ${OPTARG}";;
+    \?) usage ;;
+    :) usage ;;
+  esac
+done
+shift $((OPTIND-1))
+
+if [ -z "${MESSAGE}" ]; then
+  usage
+fi
+
+echo "$MESSAGE";
+
