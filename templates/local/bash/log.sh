@@ -31,12 +31,14 @@ export CLTYPE="\033"
  export  BOLD="${CLTYPE}[2;30m"   # Black - Bold
 
 usage() {
-  echo "Usage: log.sh [-i|-w|-e|-d] message";
+  echo "Usage: log.sh [-i|-w|-e|-d] message -t [boolean]";
+  echo " -t   Test flag -t false";
   exit 1;
 }
 
+test="false"
 MESSAGE=""
-while getopts i:w:e:d: option
+while getopts i:w:e:d:t: option
 do
   case "${option}"
     in
@@ -44,6 +46,7 @@ do
     w) MESSAGE="${YELLOW}[WARNING]  ${NC} ${OPTARG}";;
     e) MESSAGE="${RED}[ERROR]  ${NC} ${OPTARG}";;
     d) MESSAGE="${PURPLE}[DEBUG]  ${NC} ${OPTARG}";;
+    t) test=${OPTARG};;
     \?) usage ;;
     :) usage ;;
   esac
@@ -54,5 +57,8 @@ if [ -z "${MESSAGE}" ]; then
   usage
 fi
 
-echo "$MESSAGE";
-
+if [ "${test}" = true ]; then
+  echo "$MESSAGE";
+else
+  echo -e "${MESSAGE}";
+fi

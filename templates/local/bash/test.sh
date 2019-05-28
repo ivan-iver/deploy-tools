@@ -1,4 +1,11 @@
-#!/bin/bash
+#!/usr/bin/env bash
+# --
+# Author
+# --
+# Iván Jaimes <ivan@iver.mx>
+#
+# Goal script:  set color environment variables.
+
 set -o errexit
 set -o nounset
 

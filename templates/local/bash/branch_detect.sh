@@ -51,10 +51,11 @@ get_params() {
 
 get_branch() {
   branch=$(git branch -a| grep \* | cut -d ' ' -f2);
+  # echo "branch=> ${branch}"
   if [[ "${branch}" == *"HEAD"* ]] || [[ "${branch}" == *"detached"* ]]; then
     branch=${default}
   fi
-  echo "${branch}"
+  # echo "${branch}"
 }
 
 get_env() {
@@ -70,6 +71,7 @@ get_env() {
 
 main() {
   get_params "$@"
+  get_branch
   check_params
   get_env
 }
